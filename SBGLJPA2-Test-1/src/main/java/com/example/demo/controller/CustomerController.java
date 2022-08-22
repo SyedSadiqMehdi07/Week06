@@ -15,7 +15,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	@GetMapping("/employees")
+	@GetMapping("/customers")
 	public List<Customer> getAllCustomer() {
 		return customerRepository.findAll();
 	}
@@ -29,12 +29,12 @@ public class CustomerController {
 	}
 
 	@PostMapping("/customer")
-	public Customer createEmployee(@Valid @RequestBody Employee customer) {
+	public Customer createEmployee(@Valid @RequestBody Customer customer) {
 		return customerRepository.save(customer);
 	}
 
 	@PutMapping("/customer/{id}")
-	public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Long employeeId,
+	public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "id") Long employeeId,
 			@Valid @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
 		Customer customer = customerRepository.findById(customerId)
 				.orElseThrow(() -> new ResourceNotFoundException("customer not found for this id :: " + customerId));
